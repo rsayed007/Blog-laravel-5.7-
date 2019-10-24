@@ -66,11 +66,7 @@ class PostController extends Controller
             $currentDate = Carbon::now()->toDateString();
             $imageName = $slug.'-'.$currentDate.'-'.uniqid().'.'.$image->getClientOriginalExtension();
 
-            if (!Storage::disk('public')->exists('postImage')) {
-                Storage::disk('public')->makeDirectory('postImage');
-            }
-            $postImageTemp =Image::make($image)->resize(1600,1066)->save($imageName,50);
-            Storage::disk('public')->put('postImage/'.$imageName,$postImageTemp);
+            Image::make($image)->resize(1600,1066)->save( base_path('public/storage/postImage/' . $imageName ),80 );
             
         }else{
             $imageName = 'default.jpg';
@@ -79,7 +75,7 @@ class PostController extends Controller
         $post = new Post();
         $post->user_id = Auth::user()->id;
         $post->title = $request->title;
-        $post->slug = $slug;
+        $post->slug = $slug.Carbon::now()->toDateString();
         $post->image = $imageName;
         if (isset($request->status)) {
             $post->status = true;
@@ -151,15 +147,15 @@ class PostController extends Controller
             $currentDate = Carbon::now()->toDateString();
             $imageName = $slug.'-'.$currentDate.'-'.uniqid().'.'.$image->getClientOriginalExtension();
 
-            if (!Storage::disk('public')->exists('postImage')) {
-                Storage::disk('public')->makeDirectory('postImage');
-            }
              // delete old image
-            if (Storage::disk('public')->exists('postImage/'.$post->image)) {
-                Storage::disk('public')->delete('postImage/'.$post->image);
+             if (base_path('public/storage/postImage/'.$post->image)) {
+                $link = base_path('public/storage/postImage/'.$post->image);
+                unlink($link);
             }
-            $postImageTemp =Image::make($image)->resize(1600,1066)->save($imageName,50);
-            Storage::disk('public')->put('postImage/'.$imageName,$postImageTemp);
+
+            
+            Image::make($image)->resize(1600,1066)->save( base_path('public/storage/postImage/' . $imageName ),80 );
+
             
         }else{
             $imageName = $post->image;
@@ -167,7 +163,7 @@ class PostController extends Controller
 
         $post->user_id = Auth::user()->id;
         $post->title = $request->title;
-        $post->slug = $slug;
+        $post->slug = $slug.Carbon::now()->toDateString();
         $post->image = $imageName;
         if (isset($request->status)) {
             $post->status = true;
@@ -228,9 +224,9 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-         // delete old image
-         if (Storage::disk('public')->exists('postImage/'.$post->image)) {
-            Storage::disk('public')->delete('postImage/'.$post->image);
+        if (base_path('public/storage/postImage/'.$post->image)) {
+            $link = base_path('public/storage/postImage/'.$post->image);
+            unlink($link);
         }
         $post->categories()->detach();
         $post->tags()->detach();

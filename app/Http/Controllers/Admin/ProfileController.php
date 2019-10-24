@@ -38,17 +38,17 @@ class ProfileController extends Controller
             if (!Storage::disk('public')->exists('profileImage')) {
                 Storage::disk('public')->makeDirectory('profileImage');
             }
-             // delete old image
-             if (Storage::disk('public')->exists('profileImage/'.$user->image)) {
-                Storage::disk('public')->delete('profileImage/'.$user->image);
-                $link = base_path('public/').$user->image;
+
+            if ($user->image != 'userImage.jpg') {
+                $link = base_path('public/storage/profileImage/'.$user->image);
                 unlink($link);
-            }
-            
-            $profileImageTemp =Image::make($image)->resize(500,500)->save($imageName,50);
-            Storage::disk('public')->put('profileImage/'.$imageName,$profileImageTemp);
+            }             
+            Image::make($image)->resize(500,500)->save( base_path('public/storage/profileImage/' .$imageName ),80 );
+
+            // $profileImageTemp =Image::make($image)->resize(500,500)->save($imageName,50);
+            // Storage::disk('public')->put('profileImage/'.$imageName,$profileImageTemp);
         }else{
-            $imageName= 'default.jpg';
+            $imageName= 'userImage.jpg';
         }
         $user->name = $request->name;
         $user->email = $request->email;
