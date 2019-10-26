@@ -18,7 +18,7 @@
                                 <div class="card">
                                         <div class="header">
                                             <h2>
-                                                Subscriber LIST
+                                                Favorite Lists
                                                 <span class=" badge bg-deep-orange" >{{ $favoriteLists->count() }}</span>
                                             </h2>
                                         </div>
@@ -90,24 +90,6 @@
 
     <script src="{{ asset('backEnd/js/pages/tables/jquery-datatable.js')}}"></script>
 
-    <script  type="text/javascript" >
-        function deleteSubscriber(id){
-            Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-            if (result.value) {
-                event.preventDefault();
-                document.getElementById('subscriber_delete_form_'+id).submit()
-            }
-            })
-        }
-    
-    </script>
+
 
 @endpush
