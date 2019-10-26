@@ -18,7 +18,7 @@
                                 <div class="card">
                                         <div class="header">
                                             <h2>
-                                                Subscriber LIST
+                                                Subscriberasdfasdf LIST
                                                 <span class=" badge bg-deep-orange" >{{ $favoriteLists->count() }}</span>
                                             </h2>
                                         </div>
