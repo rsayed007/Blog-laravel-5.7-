@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Comment;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
@@ -22,5 +23,9 @@ class Post extends Model
     public function favoriteToUser()
     {
         return $this->belongsToMany('App\User')->withTimestamps();
+    }
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }

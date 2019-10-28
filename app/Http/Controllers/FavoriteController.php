@@ -24,4 +24,7 @@ class FavoriteController extends Controller
         }
 
     }
+    function addLike(){
+        echo 'adfadfadf';
+    }
 }

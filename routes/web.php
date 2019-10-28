@@ -15,6 +15,8 @@ Auth::routes();
 //  -----for auth
 Route::group(['middleware'=>['auth']], function(){
     Route::post('favorite/{post}/add', 'FavoriteController@add')->name('favorite.post');
+    Route::post('favorite/ajax/add', 'FavoriteController@addLike');
+    Route::post('comments/{post}', 'CommentController@addComment')->name('add.comment');
 });
 
 
@@ -62,6 +64,7 @@ Route::group(['as'=>'author.','prefix'=>'author', 'namespace'=>'Author', 'middle
 
 // for visitor
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/post/{slug}', 'PostController@index')->name('post.details');
 
 
 

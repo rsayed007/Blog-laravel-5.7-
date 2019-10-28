@@ -15,49 +15,49 @@
                     {{-- table --}}
                     <div class="row">
                         <div class="col-sm-12">
-                                <div class="card">
-                                        <div class="header">
-                                            <h2>
-                                                Subscriberasdfasdf LIST
-                                                <span class=" badge bg-deep-orange" >{{ $favoriteLists->count() }}</span>
-                                            </h2>
-                                        </div>
-                                        <div class="body">
-                                            <div class="table-responsive">
-                                                <table class="table table-bordered table-striped table-hover dataTable js-exportable">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>S.N.</th>
-                                                            <th>Title</th>
-                                                            <th>Author At</th>
-                                                            <th>Favorite</th>
-                                                            <th>View </th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tfoot>
-                                                        <tr>
-                                                            <th>S.N.</th>
-                                                            <th>Title</th>
-                                                            <th>Author At</th>
-                                                            <th>Favorite</th>
-                                                            <th>View </th>
-                                                        </tr>
-                                                    </tfoot>
-                                                    <tbody>
-                                                        @foreach ($favoriteLists as $favoriteList) 
-                                                            <tr>
-                                                                <td>{{$favoriteList->id}}</td>
-                                                                <td>{{ str_limit($favoriteList->title,18)}}</td>
-                                                                <td>{{ $favoriteList->user->name}}</td>
-                                                                <td>{{ $favoriteList->favoriteToUser->count()}}</td>
-                                                                <td>{{ $favoriteList->view_count}}</td>
-                                                            </tr>
-                                                        @endforeach
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
+                            <div class="card">
+                                <div class="header">
+                                    <h2>
+                                        Favorite Lists
+                                        <span class=" badge bg-deep-orange" >{{ $favoriteLists->count() }}</span>
+                                    </h2>
+                                </div>
+                                <div class="body">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                                            <thead>
+                                                <tr>
+                                                    <th>S.N.</th>
+                                                    <th>Title</th>
+                                                    <th>Author At</th>
+                                                    <th>Favorite</th>
+                                                    <th>View </th>
+                                                </tr>
+                                            </thead>
+                                            <tfoot>
+                                                <tr>
+                                                    <th>S.N.</th>
+                                                    <th>Title</th>
+                                                    <th>Author At</th>
+                                                    <th>Favorite</th>
+                                                    <th>View </th>
+                                                </tr>
+                                            </tfoot>
+                                            <tbody>
+                                                @foreach ($favoriteLists as $favoriteList) 
+                                                    <tr>
+                                                        <td>{{$favoriteList->id}}</td>
+                                                        <td>{{ str_limit($favoriteList->title,18)}}</td>
+                                                        <td>{{ $favoriteList->user->name}}</td>
+                                                        <td>{{ $favoriteList->favoriteToUser->count()}}</td>
+                                                        <td>{{ $favoriteList->view_count}}</td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
                                     </div>
+                                </div>
+                            </div>
                         </div>
                         {{-- Table End --}}
 
