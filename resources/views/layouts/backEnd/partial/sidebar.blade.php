@@ -88,6 +88,12 @@
                                     <span>Favorite Posts</span>
                                 </a>
                             </li>
+                            <li class="{{ Request::is('admin/comments*') ? 'active':'' }}">
+                                <a href="{{route('admin.post.comment')}}">
+                                    <i class="material-icons">comment</i>
+                                    <span>Comments</span>
+                                </a>
+                            </li>
                             <li class="{{ Request::is('admin/subscriber') ? 'active':'' }}">
                                 <a href="{{route('admin.subscriber')}}">
                                     <i class="material-icons">subscriptions</i>
@@ -122,6 +128,12 @@
                                 <a href="{{route('author.favorite.index')}}">
                                     <i class="material-icons">favorite</i>
                                     <span>Favorite Posts</span>
+                                </a>
+                            </li>
+                            <li class="{{ Request::is('author/post/comment/*') ? 'active':'' }}">
+                                <a href="{{route('author.post.comment')}}">
+                                    <i class="material-icons">comment</i>
+                                    <span>Comments</span>
                                 </a>
                             </li>
                             <li class="header bg-deep-orange">System </li>

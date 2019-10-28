@@ -19,6 +19,7 @@ Route::group(['middleware'=>['auth']], function(){
     Route::post('comments/{post}', 'CommentController@addComment')->name('add.comment');
 });
 
+Route::get('admin/post/comment', 'Admin\CommentController@showComment')->name('post.comment');
 
 //  --------- For Admin
 Route::group(['as'=>'admin.','prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>['auth','admin']], function()
@@ -37,6 +38,10 @@ Route::group(['as'=>'admin.','prefix'=>'admin', 'namespace'=>'Admin', 'middlewar
 
     //======favorite 
     Route::get('/favorite/post/list', 'FavoriteController@index')->name('favorite.index');
+    //======Comment 
+    // Route::get('/post/comment', 'CommentController@showComment')->name('post.comment');
+    Route::get('/comments', 'CommentController@showComment')->name('post.comment');
+    Route::delete('/comments/{id}/destroy', 'CommentController@destroyComment')->name('comment.destroy');
 
 
 
@@ -59,6 +64,10 @@ Route::group(['as'=>'author.','prefix'=>'author', 'namespace'=>'Author', 'middle
     //======favorite 
     Route::get('/favorite/post/list', 'FavoriteController@index')->name('favorite.index');
     
+    //======Comment 
+    Route::get('/comments', 'CommentController@showComment')->name('post.comment');
+    Route::delete('/comments/{id}/destroy', 'CommentController@destroyComment')->name('comment.destroy');
+
 
 });
 

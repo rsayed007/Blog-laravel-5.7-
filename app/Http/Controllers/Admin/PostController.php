@@ -208,7 +208,7 @@ class PostController extends Controller
             
             Toastr::success('Post Successfully Approved :)', 'Success');
         }else{
-            Toastr::info('POst is already Approved :)', 'Info');
+            Toastr::info('Post is already Approved :)', 'Info');
         }
 
         return redirect()->back();
