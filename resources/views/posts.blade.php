@@ -39,11 +39,11 @@
                         <div class="post-info">
 
                             <div class="left-area">
-                                <a class="avatar" href="#"><img src="{{ asset('storage/profileImage') }}/{{$posts->user->image}}" alt="Profile Image"></a>
+                                <a class="avatar" href="{{route('user.post',$posts->user->id)}}"><img src="{{ asset('storage/profileImage') }}/{{$posts->user->image}}" alt="Profile Image"></a>
                             </div>
 
                             <div class="middle-area">
-                                <a class="name" href="#"><b>{{$posts->user->name}}</b></a>
+                                <a class="name" href="{{route('user.post',$posts->user->id)}}"><b>{{$posts->user->name}}</b></a>
                                 <h6 class="date">on {{$posts->created_at->diffForHumans()}}</h6>
                             </div>
 
@@ -56,7 +56,7 @@
                         </div>
                         <ul class="tags">
                             @foreach ($posts->tags as $tag)
-                                <li><a href="#">{{$tag->tag}}</a></li>
+                                <li><a href="{{route('tag.post',$tag->slug)}}">{{$tag->tag}}</a></li>
                             @endforeach
                         </ul>
                     </div><!-- blog-post-inner -->

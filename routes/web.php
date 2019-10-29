@@ -74,9 +74,14 @@ Route::group(['as'=>'author.','prefix'=>'author', 'namespace'=>'Author', 'middle
 // for visitor
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/post/{slug}', 'PostController@index')->name('post.details');
-
-
-
+Route::get('/category/{slug}', 'PostController@postByCategory')->name('category.post');
+Route::get('/tag/{slug}', 'PostController@postByTag')->name('tag.post');
+Route::get('/user/{id}', 'PostController@postByUser')->name('user.post');
 
 
 Route::post('/subscriber', 'SubscriberController@index')->name('user.subscriber');
+
+View::composer('layouts.frontEnd.partial.footer', function($view){
+    $categories = App\Category::all();
+    $view->with('categories',$categories);
+});

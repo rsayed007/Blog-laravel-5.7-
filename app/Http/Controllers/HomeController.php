@@ -18,7 +18,7 @@ class HomeController extends Controller
     public function index()
     {
         $categories = Category::all();
-        $posts = Post::latest()->paginate(6);
+        $posts = Post::approved()->published()->latest()->paginate(6);
         // return $categories;
         return view('welcome', compact('categories','posts'));
     }
