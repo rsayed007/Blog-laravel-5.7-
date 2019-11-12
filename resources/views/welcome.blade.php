@@ -3,24 +3,108 @@
 @push('frontCSS')
     <link href="{{ asset('frontEnd/css/home/styles.css')}}" rel="stylesheet">
     <link href="{{ asset('frontEnd/css/home/responsive.css')}}" rel="stylesheet">
+    <link href="{{ asset('frontEnd/catSlider/style.css')}}" rel="stylesheet">
     <style>
         .favoriteList{
             color: orangered;
         }
+        .body-cat-slider{
+            position:relative;
+            margin:0 auto;
+            top:0px;
+            left:0px;
+            width:980px;
+            height:80px;
+            overflow:hidden;
+            visibility:hidden;
+        }
+        .cat-slider{
+            cursor:default;
+            position:relative;
+            top:0px;
+            left:0px;
+            width:980px;
+            height:80px;
+            overflow:hidden;
+        }
+        
+        
     </style>
 @endpush
 
 @section('main-content')
+{{-- main slider --}}
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img class="d-block w-100" src="{{ asset('storage/107th.jpg')}}" alt="First slide">
+        <div class="carousel-caption d-none d-md-block">
+            <h5>Hello</h5>
+            <p>Hello Good People</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img class="d-block w-100" src="{{ asset('storage/hello.jpg')}}" alt="Second slide">
+        <div class="carousel-caption d-none d-md-block">
+            <h5>Hello</h5>
+            <p>Hello Good People</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img class="d-block w-100" src="{{ asset('storage/107th.jpg')}}" alt="Third slide">
+        <div class="carousel-caption d-none d-md-block">
+            <h5>Hello</h5>
+            <p>Hello Good People</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img class="d-block w-100" src="{{ asset('storage/hello.jpg')}}" alt="Third slide">
+        <div class="carousel-caption d-none d-md-block">
+            <h5>Hello</h5>
+            <p>Hello Good People</p>
+        </div>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+</div>
+{{-- main slidaer end --}}
+{{-- category slidaer  --}}
+<!-- partial:index.partial.html -->
+<div id="jssor_1" class="body-cat-slider">
+    <!-- Loading Screen -->
+    <div data-u="loading" style="position:absolute;top:0px;left:0px;background-color:rgba(0,0,0,0.7);">
+        <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
+        <div style="position:absolute;display:block;background:url('img/loading.gif') no-repeat center center;top:0px;left:0px;width:100%;height:100%;"></div>
+    </div>
+    <div data-u="slides" class="cat-slider" >
+        @foreach ($categories as $category)
+            <div>
+                <a  href="{{route('category.post',$category->slug)}}"><img data-u="image" <img src="{{ asset('storage/category/slider') }}/{{$category->image}}"  alt="{{$category->category}}" /></a>
+            </div>
+            
+        @endforeach
+                
+    </div>
+</div>
+<!-- partial -->
+{{-- category slider end --}}
 
 <div>
-    <div class=" container-fluid">
-        <div class="row">
-            <div class="col-12">
-                <img src="{{ asset('storage/hello.jpg')}}" alt="">
-            </div>
-        </div>
-    </div>
-    <div class="main-slider">
+    
+    {{-- <div class="main-slider">
         <div class="swiper-container position-static" data-slide-effect="slide" data-autoheight="true"
             data-swiper-speed="500" data-swiper-autoplay="1000" data-swiper-margin="0" data-swiper-slides-per-view="4"
             data-swiper-breakpoints="true" data-swiper-loop="true" >
@@ -43,7 +127,7 @@
                 @endforeach
             </div><!-- swiper-wrapper -->
         </div><!-- swiper-container -->
-    </div><!-- slider -->
+    </div><!-- slider --> --}}
 
     <section class="blog-area section">
         <div class="container">
@@ -97,9 +181,10 @@
 
         </div><!-- container -->
     </section><!-- section -->
-    </div>    
+</div>    
 @endsection
 
 @push('frontJS')
     <script src="{{ asset('frontEnd/common-js/swiper.js')}}"></script>
+    <script src="{{ asset('frontEnd/catSlider/script.js')}}"></script>
 @endpush
